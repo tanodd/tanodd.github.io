@@ -4,4 +4,3 @@ theme:
   name: mkdocs
 plugins:
  - search
- - blog
