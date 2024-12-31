@@ -4,7 +4,7 @@ theme:
   name: mkdocs
 plugins:
  - search
-
+ - blog
 nav:
   - Home: index.md
   - Test: test.md
