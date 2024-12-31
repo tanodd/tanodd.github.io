@@ -2,3 +2,6 @@ site_name: TanOdd Note
 # site_url: https://itdn.site/mysite
 theme: 
   name: mkdocs
+plugins:
+ - search
+ - blog
