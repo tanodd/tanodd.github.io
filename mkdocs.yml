@@ -1,10 +1,9 @@
-site_name: TanOdd Note
+site_name: Cimon Document
 # site_url: https://itdn.site/mysite
 theme: 
-  name: mkdocs
+  name: material
 plugins:
  - search
- - blog
 nav:
   - Home: index.md
   - Test: test.md
