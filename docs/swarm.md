@@ -2,19 +2,19 @@
 
 **Introduction:**
 
-Docker Swarm is a powerful clustering and orchestration tool that allows you to manage and scale Docker containers across multiple nodes. In this guide, we will cover the basics of Docker Swarm, including setting up a Swarm, joining nodes, deploying services, scaling, updating, and more. Whether you’re new to Docker or looking to expand your container orchestration skills, this article will provide you with a solid foundation to get started with Docker Swarm.
-
+Docker Swarm là một công cụ (có phải công cụ không ta) được Docker đẻ ra (nhưng mà bây giờ bán để tập trung phát triển mảng khác rồi).
+Nó cho phép bạn quản lí và scale các container của docker trên nhiều node. Hiện tại thì nó đã lỗi thời so với K8s,
+nhưng nó giúp bạn hình dung được bức tranh tổng thể của microservice. Gét gô
 
 **Prerequisites:**
+Trước khi đến với Docker Swarm thì tui muốn chắc bạn đã:
+- Có biết sơ sơ về Docker
+- Có 2 máy (ưu tiên máy ảo) - 1 máy để làm Node manager và 1 để làm node worker. Cả 2 đều phải được cài docker
 
-Before we dive into Docker Swarm, ensure you have the following:
-
-- A basic understanding of Docker concepts and commands.
-- Three machines (virtual or physical): one as the manager node and two as worker nodes. These machines should have Docker installed.
 
 **Setting Up Docker Swarm:**
 
-1. Initialize the Swarm on the manager node:
+1. Setup docker Swarm trên Node đầu tiên, node này sẽ trở thành Node Manager nhé
 
 ```
 docker swarm init --advertise-addr <MANAGER_NODE_IP>
@@ -28,7 +28,7 @@ docker swarm join-token manager
 
 </aside>
 
-2. Join the worker nodes to the Swarm:
+2. Join node worker vào swarm của node manager vừa tạo
 
 On each worker node, run the following command (replace `<MANAGER_NODE_IP>` with the IP address of the manager node):
 

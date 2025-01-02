@@ -1,6 +1,8 @@
-site_name: Toikobietcode
+site_name: "Tôi không biết code"
 # site_url: https://itdn.site/mysite
 theme: 
+  logo: img/dino.png
+  favicon: img/dino.png
   name: material
   language: vi
   palette: 
@@ -9,7 +11,6 @@ theme:
       toggle:
         icon: material/lightbulb-outline
         name: Switch to dark mode
-
     # Palette toggle for dark mode
     - scheme: slate
       primary: black
@@ -20,8 +21,7 @@ theme:
 plugins:
  - search
  - blog
-# extra_javascript:
-#   - js/weather.js
+#  - social
 nav:
   - Home: index.md
   - Blog: blog/index.md
