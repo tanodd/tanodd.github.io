@@ -5,7 +5,8 @@ theme:
 plugins:
  - search
 nav:
-  - Home: index.md
+  - Home:
+    - Test1: index.md
   - Test: test.md
 
 # site_name: Test site_name:
