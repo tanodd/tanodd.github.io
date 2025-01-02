@@ -2,12 +2,19 @@ site_name: Cimon Document
 # site_url: https://itdn.site/mysite
 theme: 
   name: material
+  pallete: 
+    scheme: slate
+    primary: black
 plugins:
  - search
+ - blog
+# extra_javascript:
+#   - js/weather.js
 nav:
-  - Home:
-    - Test1: index.md
-  - Test: test.md
+  - Home: index.md
+  - Docker: 
+    - Install: docker.md
+    - Swarm: swarm.md
 
 # site_name: Test site_name:
 # theme:

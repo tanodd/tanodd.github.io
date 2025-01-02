@@ -1,18 +1,18 @@
-# Welcome to MkDocs
+# Một note nhỏ của IT Không biết code
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
-## Commands
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Vì không biết code nên tôi phải tự học code
+* Note của mình sẽ có 2 phiên bản
+* * Tiếng Việt: mình sẽ note mọi thứ trước tiên bằng tiếng việt và sau đó dịch mọi thứ sang tiếng Anh (khi nào rảnh thì dịch)
+* * English: I'm not good at this, so I will learn and write as `En go lit su` at the same time
+* And, nothing more
+## Định hướng năm 2025
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-Add some line to check Git Action is running
+    AZ-700
+    AWS - Certificates
+    Admin Microsoft 365
+    DevOps
+    K8s 
+    - và tất nhiên là có thật nhiều tiền hehe
+<div id="weather"></div>
