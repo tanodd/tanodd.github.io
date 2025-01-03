@@ -53,3 +53,28 @@ lspci -v
 ```
 timedatectl set-timezone Asia/Ho_Chi Minh
 ```
+## User Manager
+### Add User 
+```
+useradd name_user
+adduser name_user #detail about user
+```
+### Switch User
+```
+su username
+```
+### Delete
+```
+deluser username
+```
+## Group Manager
+```
+groupadd
+delgroup
+usermod -aG group_name username #Append List all Group
+#If not flag G, username will be delete on other group
+```
+### Check which group user belong to
+```
+group username
+```
