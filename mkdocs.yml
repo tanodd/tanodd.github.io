@@ -28,6 +28,8 @@ nav:
   - Docker: 
     - Install: docker.md
     - Swarm: swarm.md
-
+    - Cheatsheet: docker-cheatsheet.md
+  - Ubuntu:
+    - Cheatsheet: ubuntu.md
 # site_name: Test site_name:
 # theme:
