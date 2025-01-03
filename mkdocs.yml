@@ -7,15 +7,15 @@ theme:
   language: vi
   palette: 
     - scheme: default
-      primary: black
+      primary: "blue grey"
       toggle:
-        icon: material/lightbulb-outline
+        icon: material/weather-night
         name: Switch to dark mode
     # Palette toggle for dark mode
     - scheme: slate
       primary: black
       toggle:
-        icon: material/lightbulb
+        icon: material/weather-sunny
         name: Switch to light mode
         # primary: black
 plugins:
