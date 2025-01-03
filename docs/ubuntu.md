@@ -53,6 +53,10 @@ lspci -v
 ```
 timedatectl set-timezone Asia/Ho_Chi Minh
 ```
+## Generate Random Password
+```
+openssl rand -base64 10
+```
 ## User Manager
 ### Add User 
 ```
@@ -77,4 +81,24 @@ usermod -aG group_name username #Append List all Group
 ### Check which group user belong to
 ```
 group username
+```
+### Delete user from group
+```
+deluser username group
+```
+## Privileges
+```
+tan@ubuntu:~/mkdocs/tanodd.github.io$ ls -l
+total 16
+drwxrwxrwx 4 root root 4096 Jan  3 06:37 docs
+-rwxrwxrwx 1 root root  971 Jan  3 06:38 mkdocs.yml
+drwxrwxrwx 4 root root 4096 Jan  3 04:35 site
+drwxrwxrwx 4 root root 4096 Dec 31 07:28 venv
+```
+> First Root is owner, Second Root is group owner
+## Change owner
+```
+chown root:tan docs/
+        |   |
+      user group
 ```
