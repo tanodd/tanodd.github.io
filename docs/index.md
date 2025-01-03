@@ -15,4 +15,4 @@
     DevOps
     K8s 
     - và tất nhiên là có thật nhiều tiền hehe
-<div id="weather"></div>
+Kiểm tra self-host runner cái coi!
