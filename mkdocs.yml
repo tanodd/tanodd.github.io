@@ -31,5 +31,6 @@ nav:
     - Cheatsheet: docker-cheatsheet.md
   - Ubuntu:
     - Cheatsheet: ubuntu.md
+  - Markdown: markdown.md
 # site_name: Test site_name:
 # theme:
