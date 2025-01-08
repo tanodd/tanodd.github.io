@@ -37,6 +37,7 @@ nav:
     - Cheatsheet: docker-cheatsheet.md
   - Ubuntu:
     - Cheatsheet: ubuntu.md
+  - Traefik: traefik-index.md
   - Markdown: markdown.md
   - Source: 
     - Document: source_document.md
