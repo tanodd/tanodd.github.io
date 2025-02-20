@@ -102,3 +102,4 @@ chown root:tan docs/
         |   |
       user group
 ```
+cat, less, head, tail 
