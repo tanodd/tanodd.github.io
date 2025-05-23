@@ -1,0 +1,1307 @@
+
+<!doctype html>
+<html lang="vi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ubuntu/">
+      
+      
+        <link rel="next" href="../markdown/">
+      
+      
+      <link rel="icon" href="../img/dino.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Traefik - Tôi không biết code</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mot-chut-ve-proxy" class="md-skip">
+          Bỏ qua
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Đầu trang">
+    <a href=".." title="Tôi không biết code" class="md-header__button md-logo" aria-label="Tôi không biết code" data-md-component="logo">
+      
+  <img src="../img/dino.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Tôi không biết code
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Traefik
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Tìm kiếm" placeholder="Tìm kiếm" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Tìm kiếm">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Xoá" aria-label="Xoá" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Thanh điều hướng" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Tôi không biết code" class="md-nav__button md-logo" aria-label="Tôi không biết code" data-md-component="logo">
+      
+  <img src="../img/dino.png" alt="logo">
+
+    </a>
+    Tôi không biết code
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swarm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Swarm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cheatsheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ubuntu
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Ubuntu
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubuntu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cheatsheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Traefik
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Traefik
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mot-chut-ve-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Một chút về Proxy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Một chút về Proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edge Router
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-service-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto Service Discovery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kien-truc-chi-tiet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kiến trúc chi tiết
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kiến trúc chi tiết">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nhiem-vu-cu-the-cua-cac-thanh-phan-co-the-trung-voi-concepts-nhu-oc-lai-cho-nho-he" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nhiệm vụ cụ thể của các thành phần (Có thể trùng với concepts như đọc lại cho nhớ hé)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrypoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      EntryPoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EntryPoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cau-hinh-mau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cấu hình mẫu
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cau-hinh-mau_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cấu hình mẫu
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cau-hinh-mau_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cấu hình mẫu
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Middleware
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Markdown
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Source
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Source
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mot-chut-ve-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Một chút về Proxy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Một chút về Proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edge Router
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-service-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto Service Discovery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kien-truc-chi-tiet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kiến trúc chi tiết
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kiến trúc chi tiết">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nhiem-vu-cu-the-cua-cac-thanh-phan-co-the-trung-voi-concepts-nhu-oc-lai-cho-nho-he" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nhiệm vụ cụ thể của các thành phần (Có thể trùng với concepts như đọc lại cho nhớ hé)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrypoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      EntryPoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EntryPoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cau-hinh-mau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cấu hình mẫu
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cau-hinh-mau_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cấu hình mẫu
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cau-hinh-mau_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cấu hình mẫu
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Middleware
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Traefik</h1>
+
+<h2 id="mot-chut-ve-proxy">Một chút về Proxy</h2>
+<p>Hãy tưởng tượng Internet giống như xã hội của chúng ta vậy, bạn đến quán cà phê và yêu cầu một cốc Amely Canô thông qua bạn nhân viên phục vụ, rồi nhân viên phục vụ nhận ghi lại yêu cầu sau đó chuyển sang cho pha chế. Proxy cũng giống như vậy, nó đứng giữa bạn và pha chế, tiếp nhận yêu cầu, đưa yêu cầu đó vào bên trong để xử lí và trả lại kết quả cho bạn. 
+<strong>Coffee</strong> ☕️</p>
+<h3 id="concepts">Concepts</h3>
+<ul>
+<li>Các khái niệm của Traefik dựa trên những thành phần bao gồm: EntryPoint, Routers, Middlewares và Services</li>
+<li>Các tính năng chính bao gồm các dynamic configuration (tự động cấu hình), automation service discovery và hỗ trợ đa giao thức và đa nền tảng <ul>
+<li><em>EntryPoints</em>: EntryPoints là điểm đầu vào của Traefik - được xem như cổng chính từ bên ngoài đi vào. Nó dựa vào port và phương thức (UDP hay TCP) mà các gói tin được gửi đến và quyết định có chấp nhận forward hay không.</li>
+<li><em>Routers</em>: Router đảm nhiệm vai trong kết nối các yêu cầu đi vào đến dịch vụ bên trong được yêu cầu</li>
+<li><em>Middlewares</em>: đi kèm với router, middleware có thể modify yêu cầu đi vào hoặc phản hồi đi ra trước khi gửi chúng đến service của bạn</li>
+<li><em>Services</em>: các service được trách nhiệm cấu hình cách các service thật sự (như các container của docker) handle những request</li>
+</ul>
+</li>
+</ul>
+<h5 id="edge-router">Edge Router</h5>
+<ul>
+<li>Traefik là một Edge Router, nó là cánh cửa ngăn cách bên ngoài và định tuyến vào trong hạ tầng của bạn, có thể là máy ảo, microservice như Docker Container,…</li>
+<li>Dựa vào path, host, header của request mà chúng quyết định sẽ định tuyến như thế nào</li>
+</ul>
+<p><img alt="Concept" src="https://doc.traefik.io/traefik/assets/img/traefik-concepts-1.png" /></p>
+<h5 id="auto-service-discovery">Auto Service Discovery</h5>
+<ul>
+<li>Thông thường, các proxy hay như ở trên là edge router cần file cấu hình để chúng có thể biết cách định tuyến như thế nào, có những service nào nằm bên trong nhưng Traefik thì khác, nó có thể tự động nhận biết các server để cập nhật bảng định tuyến</li>
+<li>Dựa vào các service của bạn và thông tin mà bạn cấu hình mà Traefik có thể hình dung được cách đặc điểm của yêu cầu mà service có thể handle</li>
+</ul>
+<p><img alt="Auto Discovery" src="https://doc.traefik.io/traefik/assets/img/traefik-concepts-2.png" /></p>
+<ul>
+<li>Nó có nghĩa là khi một service được deploy, Traefik sẽ tự động phát hiện ngay lập tức rồi sau đó update routing table, real time luôn :) (*đá nginx ra chuồng gà thôi), tương tự khi service được remove ra thì nó cũng remove các thứ liên quan. Chúng ta không cần phải làm gì cả, trừ khi muốn can thiệp vào.</li>
+</ul>
+<blockquote>
+<p>Lưu ý, traefik có 2 loại cấu hình lại Fix cứng và Dynamic, fix cứng có nghĩa là đã start traefik lên rồi thì khó sửa (nếu muốn sửa thì sửa file YAML hoặc TOML), còn Dynamic thì sửa vô tư </p>
+</blockquote>
+<h3 id="kien-truc-chi-tiet">Kiến trúc chi tiết</h3>
+<ul>
+<li>Hãy cùng qua sát về kiến trúc của Traefik ở hình bên dưới</li>
+</ul>
+<p><img alt="Architech" src="https://doc.traefik.io/traefik/assets/img/architecture-overview.png" /></p>
+<ul>
+<li>Đầu tiên, chúng ta sẽ định nghĩa các <em>entrypoint</em> (entrypoint có thể hình dung như cái cổng đi vào, port mấy mấy như 80 hoặc 433 bla bla)
+ Các <em>routers</em> phân tích các request đi vào và đối chiếu với các rule được định nghĩa trước, nó sẽ hỏi xem "Request này dùng host nào, path là gì và header ra sao.
+ Và chuyển chúng đến các service yêu cầu. Lưu ý, nếu Middlewares xuất hiện, nó sẽ nằm giữa và can thiệp vào giữa routers và service, chẳng hạn như bắt chúng ta nhập mật khẩu/ user trước khi được thông qua</li>
+</ul>
+<h4 id="nhiem-vu-cu-the-cua-cac-thanh-phan-co-the-trung-voi-concepts-nhu-oc-lai-cho-nho-he">Nhiệm vụ cụ thể của các thành phần (Có thể trùng với concepts như đọc lại cho nhớ hé)</h4>
+<ol>
+<li>Providers: định nghĩa mạng mẽo, hạ tầng chúng ta đang dùng là gì: Docker? Swarm? K8s,..</li>
+<li>EntryPoints: lắng nghe traffic đi vào (port nào ?)</li>
+<li>Router: phân tích request (host, path, headers, SSL,...?)</li>
+<li>Services: forward yêu cầu tới service (loadbalacing hay server nào đó ?)</li>
+<li>Middleware: update request hoặc đưa ra quyết định dựa trên request. Dễ hiểu hơn thì nó nằm giữa service và router: chặn lưu lượng lại và hỏi: mày là thèn nào? đứa CCCD ra đây, header đâu ? láo nháo là tau limit rate lại nhé, kiểu vậy =)))</li>
+</ol>
+<h2 id="entrypoints">EntryPoints</h2>
+<p><img alt="EntryPoint" src="https://doc.traefik.io/traefik/assets/img/entrypoints.png" /></p>
+<ul>
+<li>Nó là cửa ngõ hứng lưu lượng từ ngoài đi vào, lắng nghe lưu lượng TCP/UDP, port bao nhiêu</li>
+</ul>
+<h4 id="cau-hinh-mau">Cấu hình mẫu</h4>
+<pre><code>## Static configuration
+--entryPoints.web.address=:80
+--entryPoints.websecure.address=:443
+</code></pre>
+<ul>
+<li>Ở trên 2 entrypoint được định nghĩa: web và websecure<blockquote>
+<p>Còn nhiều định nghĩa lắm mà ít dùng, mọi người muốn tìm hiểu thì vào docs chính chủ nhe <a href="https://doc.traefik.io/traefik/routing/entrypoints/">Traefik Document - EntryPoint</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="routers">Routers</h2>
+<p><img alt="Routers" src="https://doc.traefik.io/traefik/assets/img/routers.png" />
+* Một router chịu trách nhiệm kết nối request đi vào thông qua EntryPoint tới service và gọi middleware trung gian (nếu có) mà chúng có thể handle phụ thuộc vào rule (host, path, ...) </p>
+<h4 id="cau-hinh-mau_1">Cấu hình mẫu</h4>
+<pre><code>## Static configuration
+- &quot;traefik.http.routers.traefik.rule=Rule_nào_đó('Điều kiện')
+## - traefik.http.routers.traefik.rule=Host(`tanodd.hihi`) - router này nhận host tanodd.hihi và forward tiếp 
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Rules</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header(<code>key</code>, <code>value</code>)</td>
+<td>Matches requests containing a header named key set to value.</td>
+</tr>
+<tr>
+<td>HeaderRegexp(<code>key</code>, <code>regexp</code>)</td>
+<td>Matches requests containing a header named key matching regexp</td>
+</tr>
+<tr>
+<td>Host(<code>domain</code>)</td>
+<td>Matches requests host set to domain.</td>
+</tr>
+<tr>
+<td>HostRegexp(<code>regexp</code>)</td>
+<td>Matches requests host matching regexp.</td>
+</tr>
+<tr>
+<td>Method(<code>method</code>)</td>
+<td>Matches requests method set to method.</td>
+</tr>
+<tr>
+<td>Path(<code>path</code>)</td>
+<td>Matches requests path set to path.</td>
+</tr>
+<tr>
+<td>PathPrefix(<code>prefix</code>)</td>
+<td>Matches requests path prefix set to prefix.</td>
+</tr>
+<tr>
+<td>PathRegexp(<code>regexp</code>)</td>
+<td>Matches request path using regexp.</td>
+</tr>
+<tr>
+<td>Query(<code>key</code>, <code>value</code>)</td>
+<td>Matches requests query parameters named key set to value.</td>
+</tr>
+<tr>
+<td>QueryRegexp(<code>key</code>, <code>regexp</code>)</td>
+<td>Matches requests query parameters named key matching regexp.</td>
+</tr>
+<tr>
+<td>ClientIP(<code>ip</code>)</td>
+<td>Matches requests client IP using ip. It accepts IPv4, IPv6 and CIDR formats.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="services">Services</h2>
+<p><img alt="Services" src="https://doc.traefik.io/traefik/assets/img/services.png" /></p>
+<h4 id="cau-hinh-mau_2">Cấu hình mẫu</h4>
+<pre><code> - &quot;traefik.http.services.traefik.loadbalancer.server.port=8080&quot;
+</code></pre>
+<blockquote>
+<p>Service này sẽ forward lưu lượng đến port 8000 trong internal
+* Ngoài ra, ta còn có thể trỏ cụ thể ip, port,... với weight để ưu tiên cân bằng tải ... như ví dụ dưới</p>
+</blockquote>
+<pre><code>## Dynamic configuration
+http:
+  services:
+    my-service:
+      loadBalancer:
+        servers:
+          - url: &quot;http://private-ip-server-1/&quot;
+            weight: 2
+          - url: &quot;http://private-ip-server-2/&quot;
+            weight: 1
+</code></pre>
+<h2 id="provider">Provider</h2>
+<ul>
+<li>Chúng ta dùng để chỉ định internal service dùng cái gì để hoạt động, như Docker hay Swarm,... Mục đích của việc chỉ định Provider là để Traefik có thể nhận dạng được cấu hình Dynamic Routing khi ta tạo 1 container mới, xoá đi hay cập nhật - đây là một tính năng vượt trội đáng để sử dụng Traefik - Dynamic Routing</li>
+<li>Docker: <code>--providers.docker=true</code></li>
+<li>Swarm: <code>"--providers.swarm=true"</code></li>
+<li>Kubenetes IngressRoute, Ingress, Gateưay API: tui chưa tiếp xúc nên tạm để link đây hé <a href="https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/">Kubenetes Provider</a></li>
+</ul>
+<h2 id="middleware">Middleware</h2>
+<ul>
+<li>Chúng ta thường dùng Middle để xác thực, http redirect https, forwardAuth, Rate Limit </li>
+<li>
+<p>Có 2 loại Middleware là HTTP với TCP, nhưng ở bài viết này chúng ta chỉ hướng đến HTTP </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Middleware</th>
+<th style="text-align: center;">Purpose</th>
+<th style="text-align: center;">Area</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">AddPrefix</td>
+<td style="text-align: center;">Adds a Path Prefix</td>
+<td style="text-align: center;">Path Modifier</td>
+</tr>
+<tr>
+<td style="text-align: center;">BasicAuth</td>
+<td style="text-align: center;">Adds Basic Authentication</td>
+<td style="text-align: center;">Security, Authentication</td>
+</tr>
+<tr>
+<td style="text-align: center;">Buffering</td>
+<td style="text-align: center;">Buffers the request/response</td>
+<td style="text-align: center;">Request Lifecycle</td>
+</tr>
+<tr>
+<td style="text-align: center;">Chain</td>
+<td style="text-align: center;">Combines multiple pieces of middleware</td>
+<td style="text-align: center;">Misc</td>
+</tr>
+<tr>
+<td style="text-align: center;">CircuitBreaker</td>
+<td style="text-align: center;">Prevents calling unhealthy services</td>
+<td style="text-align: center;">Request Lifecycle</td>
+</tr>
+<tr>
+<td style="text-align: center;">Compress</td>
+<td style="text-align: center;">Compresses the response</td>
+<td style="text-align: center;">Content Modifier</td>
+</tr>
+<tr>
+<td style="text-align: center;">ContentType</td>
+<td style="text-align: center;">Handles Content-Type auto-detection</td>
+<td style="text-align: center;">Misc</td>
+</tr>
+<tr>
+<td style="text-align: center;">DigestAuth</td>
+<td style="text-align: center;">Adds Digest Authentication</td>
+<td style="text-align: center;">Security, Authentication</td>
+</tr>
+<tr>
+<td style="text-align: center;">Errors</td>
+<td style="text-align: center;">Defines custom error pages</td>
+<td style="text-align: center;">Request Lifecycle</td>
+</tr>
+<tr>
+<td style="text-align: center;">ForwardAuth</td>
+<td style="text-align: center;">Delegates Authentication</td>
+<td style="text-align: center;">Security, Authentication</td>
+</tr>
+<tr>
+<td style="text-align: center;">Headers</td>
+<td style="text-align: center;">Adds / Updates headers</td>
+<td style="text-align: center;">Security</td>
+</tr>
+<tr>
+<td style="text-align: center;">IPAllowList</td>
+<td style="text-align: center;">Limits the allowed client IPs</td>
+<td style="text-align: center;">Security, Request lifecycle</td>
+</tr>
+<tr>
+<td style="text-align: center;">InFlightReq</td>
+<td style="text-align: center;">Limits the number of simultaneous connections</td>
+<td style="text-align: center;">Security, Request lifecycle</td>
+</tr>
+<tr>
+<td style="text-align: center;">PassTLSClientCert</td>
+<td style="text-align: center;">Adds Client Certificates in a Header</td>
+<td style="text-align: center;">Security</td>
+</tr>
+<tr>
+<td style="text-align: center;">RateLimit</td>
+<td style="text-align: center;">Limits the call frequency</td>
+<td style="text-align: center;">Security, Request lifecycle</td>
+</tr>
+<tr>
+<td style="text-align: center;">RedirectScheme</td>
+<td style="text-align: center;">Redirects based on scheme</td>
+<td style="text-align: center;">Request lifecycle</td>
+</tr>
+<tr>
+<td style="text-align: center;">RedirectRegex</td>
+<td style="text-align: center;">Redirects based on regex</td>
+<td style="text-align: center;">Request lifecycle</td>
+</tr>
+<tr>
+<td style="text-align: center;">ReplacePath</td>
+<td style="text-align: center;">Changes the path of the request</td>
+<td style="text-align: center;">Path Modifier</td>
+</tr>
+<tr>
+<td style="text-align: center;">ReplacePathRegex</td>
+<td style="text-align: center;">Changes the path of the request</td>
+<td style="text-align: center;">Path Modifier</td>
+</tr>
+<tr>
+<td style="text-align: center;">Retry</td>
+<td style="text-align: center;">Automatically retries in case of error</td>
+<td style="text-align: center;">Request lifecycle</td>
+</tr>
+<tr>
+<td style="text-align: center;">StripPrefix</td>
+<td style="text-align: center;">Changes the path of the request</td>
+<td style="text-align: center;">Path Modifier</td>
+</tr>
+<tr>
+<td style="text-align: center;">StripPrefixRegex</td>
+<td style="text-align: center;">Changes the path of the request</td>
+<td style="text-align: center;">Path Modifier</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p><strong>Thôi lí thuyết ngang ni thôi, dài quá rồi, uống ly cà phê và nghỉ khoẻ để cuối tuần demo thực hành</strong> ☕️</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0110\u00e3 sao ch\u00e9p", "clipboard.copy": "Sao ch\u00e9p v\u00e0o b\u1ed9 nh\u1edb t\u1ea1m", "search.result.more.one": "1 t\u1eeb kh\u00e1c trong trang", "search.result.more.other": "# t\u1eeb kh\u00e1c trong trang", "search.result.none": "Kh\u00f4ng t\u00ecm th\u1ea5y t\u00e0i li\u1ec7u li\u00ean quan", "search.result.one": "1 t\u00e0i li\u1ec7u li\u00ean quan", "search.result.other": "# t\u00e0i li\u1ec7u li\u00ean quan", "search.result.placeholder": "Nh\u1eadp \u0111\u1ec3 b\u1eaft \u0111\u1ea7u t\u00ecm ki\u1ebfm", "search.result.term.missing": "Kh\u00f4ng", "select.version": "Ch\u1ecdn phi\u00ean b\u1ea3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
